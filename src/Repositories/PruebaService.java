@@ -15,12 +15,17 @@ public static void main(String[]args){
 
     BancoRepository objBancoRepository=new BancoRepository(BancoList);
     BancoService objBancoService=new BancoService(objBancoRepository);
-
+    ClienteRepository objClienteRepository=new ClienteRepository(clienteList);
+    ClienteService objClienteService=new ClienteService(objClienteRepository,objBancoRepository);
     objBancoService.crearBanco();
     objBancoService.crearBanco();
 
     System.out.println(objBancoRepository.listaSucursales());
-    System.out.println(objBancoRepository.listaSucursales());
+    objClienteService.crearCliente();
+    objClienteService.crearCliente();
+
+    System.out.println(objClienteRepository.mostrarClientes());
+
 
 }
 }

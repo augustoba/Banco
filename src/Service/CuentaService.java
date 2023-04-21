@@ -12,15 +12,17 @@ public class CuentaService {
 
     private Scanner objScanner = new Scanner(System.in);
     private BancoRepository objBancoRepository=new BancoRepository();
-    private ClienteRepository objclienteRepository = new ClienteRepository();
 
-    public Cuenta crearCuenta(/*List<Sucursal> bancoList*/) {
+
+
+    public Cuenta crearCuenta(List<Sucursal> sucursales) {
         Cuenta cuenta = new Cuenta();
 
         System.out.println("elija una sucursal");
 
-        for (int i = 0; i < objBancoRepository.listaSucursales().size(); i++) {
-            System.out.println(i+": "+objBancoRepository.listaSucursales());
+        for (int i = 0; i < sucursales.size(); i++) {
+            System.out.println("sucursal : " + sucursales.get(i).getNumeroSuc()+
+                    " Direccion: " + sucursales.get(i).getDireccion());
         }
 
         cuenta.setSucursal(objScanner.nextInt());

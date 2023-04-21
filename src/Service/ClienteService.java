@@ -2,6 +2,7 @@ package Service;
 
 import Entities.Sucursal;
 import Entities.Cliente;
+import Repositories.BancoRepository;
 import Repositories.ClienteRepository;
 
 import java.util.List;
@@ -9,11 +10,23 @@ import java.util.Scanner;
 
 public class ClienteService {
 
-    ClienteRepository objclienteRepository = new ClienteRepository();
+    private ClienteRepository clienteRepo;
+    private BancoRepository bancoRepo;
+    public ClienteService() {
+    }
+
+    public ClienteService(ClienteRepository clienteRepo, BancoRepository bancoRepo) {
+        this.clienteRepo = clienteRepo;
+        this.bancoRepo = bancoRepo;
+    }
+
+    ClienteRepository objclienteRepository = clienteRepo;
+    BancoRepository objbancoRep=bancoRepo;
+
     private Scanner objScanner = new Scanner(System.in);
 
-    public Cliente crearCliente(/*List<Sucursal> bancoList, List<Cliente> clienteList*/){
-        CuentaService  objCuentaService = new CuentaService();
+    public Cliente crearCliente(){
+       CuentaService  objCuentaService = new CuentaService();
 
         Cliente objCliente = new Cliente();
         System.out.println("ingrese el nombre del cliente");
@@ -24,11 +37,10 @@ public class ClienteService {
         objCliente.setDireccion(objScanner.nextLine());
         System.out.println("ingrese el dni");
         objCliente.setDni(objScanner.nextLine());
-        objCliente.setCuenta(objCuentaService.crearCuenta());
-        objclienteRepository.agregarCliente(objCliente);
+        objCliente.setCuenta(objCuentaService.crearCuenta(bancoRepo.listaSucursales()));
+        clienteRepo.agregarCliente(objCliente);
 
-       // objCliente.setCuenta(objCuentaService.crearCuenta(bancoList,objCliente));
-      //  clienteList.add(objCliente);
+
         return objCliente;
     }
 }
