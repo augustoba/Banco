@@ -2,6 +2,7 @@ package Entities;
 
 public abstract class Banco {
     final String nombre = "Rio";
+
     private String direccion;
 
     private String provincia;

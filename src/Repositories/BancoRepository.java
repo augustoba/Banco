@@ -7,9 +7,6 @@ import java.util.List;
 
 public class BancoRepository extends BancoDB {
 
-    public BancoRepository() {
-    }
-
     public BancoRepository(List<Sucursal> BancoList) {
         super(BancoList);
     }

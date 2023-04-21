@@ -2,10 +2,7 @@ package Service;
 
 import Entities.Cliente;
 import Entities.Transferencia;
-import Repositories.BancoRepository;
 import Repositories.ClienteRepository;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class TransferenciaService {

@@ -11,8 +11,7 @@ public class ClienteRepository extends ClienteDB {
         super(clienteList);
     }
 
-    public ClienteRepository() {
-    }
+
 
     @Override
     public void agregarCliente(Cliente cliente) {

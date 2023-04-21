@@ -1,14 +1,14 @@
 package Entities;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 public class Transferencia {
-    Integer idTransferencia;
-    Double monto;
-    LocalDate fechaTransferenc;
-    String detalle;
-    static int contador = 0;
+   private Integer idTransferencia;
+    private Double monto;
+    private LocalDate fechaTransferenc;
+    private String detalle;
+    private static int contador = 0;
 
     public Transferencia() {
         contador ++;

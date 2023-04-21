@@ -1,11 +1,11 @@
 package Service;
 
-import Entities.Sucursal;
+
 import Entities.Cliente;
 import Repositories.BancoRepository;
 import Repositories.ClienteRepository;
 
-import java.util.List;
+
 import java.util.Scanner;
 
 public class ClienteService {

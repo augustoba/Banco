@@ -10,7 +10,7 @@ public class Cuenta {
     private Boolean cajaAhorro;
     private  Boolean cuentaCorriente;
     private Double saldo;
-    LocalDate fechaAlta;
+   private LocalDate fechaAlta;
     private List<Transferencia>transferencias=new ArrayList<>();
 
     public Cuenta() {
