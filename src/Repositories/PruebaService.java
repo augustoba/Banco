@@ -20,6 +20,7 @@ public static void main(String[]args){
     objBancoService.crearBanco();
 
     System.out.println(objBancoRepository.listaSucursales());
+    System.out.println(objBancoRepository.listaSucursales());
 
 }
 }
