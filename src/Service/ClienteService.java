@@ -37,9 +37,9 @@ public class ClienteService {
         objCliente.setDireccion(objScanner.nextLine());
         System.out.println("ingrese el dni");
         objCliente.setDni(objScanner.nextLine());
-        objCliente.setCuenta(objCuentaService.crearCuenta(bancoRepo.listaSucursales()));
+        objCliente.setAlta(true);
+        objCliente.setCuenta(objCuentaService.crearCuenta(bancoRepo.listaSucursales(),objCliente));
         clienteRepo.agregarCliente(objCliente);
-
 
         return objCliente;
     }

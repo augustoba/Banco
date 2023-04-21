@@ -54,7 +54,8 @@ public class Sucursal {
 
     @Override
     public String toString() {
-        return "Sucursal{" +
+        return "\n"+
+                "Sucursal{" +
                 "nombre='" + nombre + '\'' +
                 ", numeroSuc=" + numeroSuc +
                 ", direccion='" + direccion + '\'' +

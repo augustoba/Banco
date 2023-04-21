@@ -7,12 +7,22 @@ public class Transferencia {
     Integer idTransferencia;
     Double monto;
     LocalDate fechaTransferenc;
-
+    String detalle;
+    static int contador = 0;
 
     public Transferencia() {
-    fechaTransferenc = LocalDate.now();
+        contador ++;
+        this.idTransferencia = contador;
+        this.fechaTransferenc = LocalDate.now();
 
+    }
 
+    public Transferencia(Integer idTransferencia, Double monto, LocalDate fechaTransferenc, String detalle) {
+        contador++;
+        this.idTransferencia = contador;
+        this.monto = monto;
+        this.fechaTransferenc = LocalDate.now();
+        this.detalle = detalle;
     }
 
     public Integer getIdTransferencia() {
@@ -31,13 +41,24 @@ public class Transferencia {
         this.monto = monto;
     }
 
+    public LocalDate getFechaTransferenc() {
+        return fechaTransferenc;
+    }
 
+    public void setFechaTransferenc(LocalDate fechaTransferenc) {
+        this.fechaTransferenc = fechaTransferenc;
+    }
+
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
+    }
 
     @Override
     public String toString() {
-        return "Transferencia{" +
-                "idTransferencia=" + idTransferencia +
-                ", monto=" + monto +
-                '}';
+        return  detalle ;
     }
 }

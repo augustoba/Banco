@@ -1,41 +1,47 @@
 package Entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cuenta {
-    private Integer  idCuenta;
+    private String  idCuenta;
     private Integer sucursal;
     private Boolean cajaAhorro;
     private  Boolean cuentaCorriente;
-    private Cliente cliente;
     private Double saldo;
     LocalDate fechaAlta;
-    private List<Transferencia>transferencias;
-    static  Integer contador = 0;
-
+    private List<Transferencia>transferencias=new ArrayList<>();
 
     public Cuenta() {
-        contador++;
-        this.idCuenta =contador;
-        this.cajaAhorro = false;
-        this.cuentaCorriente = false;
-        this.saldo = 0.0;
     }
 
-    public Cuenta(Boolean cajaAhorro, Boolean cuentaCorriente, Double saldo) {
-        contador++;
+    public Cuenta(String idCuenta, Integer sucursal, Boolean cajaAhorro, Boolean cuentaCorriente,  Double saldo, LocalDate fechaAlta, List<Transferencia> transferencias) {
+        this.idCuenta = idCuenta;
+        this.sucursal = sucursal;
         this.cajaAhorro = cajaAhorro;
         this.cuentaCorriente = cuentaCorriente;
-        this.saldo = saldo;
-        this.idCuenta = contador;
-        }
 
-    public Integer getIdCuenta() {
+        this.saldo = saldo;
+        this.fechaAlta = fechaAlta;
+        this.transferencias = transferencias;
+    }
+
+    public String getIdCuenta() {
         return idCuenta;
     }
 
+    public void setIdCuenta(String idCuenta) {
+        this.idCuenta = idCuenta;
+    }
 
+    public Integer getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Integer sucursal) {
+        this.sucursal = sucursal;
+    }
 
     public Boolean getCajaAhorro() {
         return cajaAhorro;
@@ -53,6 +59,7 @@ public class Cuenta {
         this.cuentaCorriente = cuentaCorriente;
     }
 
+
     public Double getSaldo() {
         return saldo;
     }
@@ -61,6 +68,13 @@ public class Cuenta {
         this.saldo = saldo;
     }
 
+    public LocalDate getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(LocalDate fechaAlta) {
+        this.fechaAlta = fechaAlta;
+    }
 
     public List<Transferencia> getTransferencias() {
         return transferencias;
@@ -70,21 +84,19 @@ public class Cuenta {
         this.transferencias = transferencias;
     }
 
-    public Integer getSucursal() {
-        return sucursal;
-    }
 
-    public void setSucursal(Integer sucursal) {
-        this.sucursal = sucursal;
-    }
 
     @Override
     public String toString() {
-        return "Cuenta{" +
+        return "\n"+
+                "Cuenta{" +
                 "idCuenta=" + idCuenta +
+                ", sucursal=" + sucursal +
                 ", cajaAhorro=" + cajaAhorro +
                 ", cuentaCorriente=" + cuentaCorriente +
                 ", saldo=" + saldo +
+                ", fechaAlta=" + fechaAlta +
+                ", transferencias=" + transferencias +
                 '}';
     }
 }

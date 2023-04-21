@@ -9,7 +9,20 @@ public class Cliente {
    private Boolean alta;
    private Cuenta cuenta;
 
-   public String getDni() {
+    public Cliente() {
+
+    }
+
+    public Cliente(String dni, String nombre, String apellido, String direccion, Boolean alta, Cuenta cuenta) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.alta = alta;
+        this.cuenta = cuenta;
+    }
+
+    public String getDni() {
         return dni;
     }
 
@@ -61,7 +74,8 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "\n"+
+                "Cliente{" +
                 "dni='" + dni + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
