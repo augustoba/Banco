@@ -1,26 +1,28 @@
-package Repositories;
+package Service;
 import Entities.Cliente;
 import Entities.Sucursal;
-import Service.BancoService;
-import Service.ClienteService;
-import Service.TransferenciaService;
+import Repositories.BancoRepository;
+import Repositories.ClienteRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PruebaService {
+public class MenuService {
 
-public static void main(String[]args){
+public  void menu(){
     List<Sucursal> BancoList=new ArrayList<>();
     List<Cliente> clienteList=new ArrayList<>();
 
     BancoRepository objBancoRepository=new BancoRepository(BancoList);
-    BancoService objBancoService=new BancoService(objBancoRepository);
+    SucursalService objSucursalService =new SucursalService(objBancoRepository);
     ClienteRepository objClienteRepository=new ClienteRepository(clienteList);
     ClienteService objClienteService=new ClienteService(objClienteRepository,objBancoRepository);
     TransferenciaService objTransferenciaService=new TransferenciaService(objClienteRepository);
-    objBancoService.crearBanco();
-    objBancoService.crearBanco();
+
+
+
+    objSucursalService.crearSucursal();
+    objSucursalService.crearSucursal();
 
     System.out.println(objBancoRepository.listaSucursales());
     objClienteService.crearCliente();
@@ -33,6 +35,3 @@ public static void main(String[]args){
     System.out.println(objClienteRepository.mostrarClientes());
 }
 }
-
-  /*  ClienteService objClientService=new ClienteService();
-    ClienteRepository objClienteRepository=new ClienteRepository(clienteList);*/

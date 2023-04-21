@@ -3,7 +3,7 @@ package Entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sucursal {
+public class Sucursal extends Banco{
     final String nombre = "Rio";
     private Integer numeroSuc;
     private String direccion;
@@ -13,14 +13,14 @@ public class Sucursal {
 
 
     public Sucursal() {
-        contador++;
-        this.numeroSuc = contador;
+         contador++;
+        this.numeroSuc=contador;
     }
 
-    public Sucursal(Integer numeroSuc, String direccion, List<Cliente> clientes) {
+    public Sucursal(String direccion, String provincia, Integer cp, String pais, Integer numeroSuc, List<Cliente> clientes) {
+        super(direccion, provincia, cp, pais);
         contador++;
-        this.numeroSuc = contador;
-        this.direccion = direccion;
+        this.numeroSuc=contador;
         this.clientes = clientes;
     }
 
