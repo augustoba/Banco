@@ -5,9 +5,9 @@ import Service.MenuService;
 public class Main {
     public static void main(String[] args) {
 
-        MenuService objeMenuService = new MenuService();
+        MenuService objMenuService = new MenuService();
 
-        objeMenuService.menu();
+        objMenuService.menu();
 
 
 

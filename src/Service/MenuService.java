@@ -2,17 +2,17 @@ package Service;
 
 import Entities.Cliente;
 import Entities.Sucursal;
+import Exceptions.Excepciones;
 import Repositories.BancoRepository;
 import Repositories.ClienteRepository;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuService {
 
-    private Scanner objScanner = new Scanner(System.in);
+    private static Scanner objScanner = new Scanner(System.in);
     List<Sucursal> BancoList = new ArrayList<>();
     List<Cliente> clienteList = new ArrayList<>();
 
@@ -21,6 +21,7 @@ public class MenuService {
     ClienteRepository objClienteRepository = new ClienteRepository(clienteList);
     ClienteService objClienteService = new ClienteService(objClienteRepository, objBancoRepository);
     TransferenciaService objTransferenciaService = new TransferenciaService(objClienteRepository);
+    Excepciones objExcepciones = new Excepciones();
 
     public void menu() {
 
@@ -34,21 +35,19 @@ public class MenuService {
         System.out.println("6- Mostrar todos los clientes");
         System.out.println("7- Volver a mostrar el menu..");
         System.out.println("8- Salir");
-        System.out.println("Ingrese una opcion");
+
 
         do {
-
-
-            opc = validarInput();
-
-            System.out.println("debe ingresar un numero entero");
-            objScanner.nextLine();
+            System.out.println("Ingrese una opcion");
+            opc = objExcepciones.validarInput();
 
 
             switch (opc) {
 
                 case 1:
+
                     objSucursalService.crearSucursal();
+
                     break;
                 case 2:
                     objClienteService.crearCliente();
@@ -60,7 +59,6 @@ public class MenuService {
                     objSucursalService.mostrarBancos();
                     break;
                 case 5:
-                    objScanner.nextLine();
                     System.out.println("ingrese el numero de cuenta");
                     objClienteService.MostrarClienteCuenta(objScanner.nextLine());
                     break;
@@ -88,21 +86,5 @@ public class MenuService {
         } while (opc != 8);
     }
 
-    public int validarInput() {
-        int numero = 9;
-        boolean check = false;
 
-        do {
-            try {
-                numero = objScanner.nextInt();
-                check = true;
-            } catch (InputMismatchException e) {
-                System.out.println("debe ingresar un numero entero");
-                objScanner.nextLine();
-            }
-        } while (!check);
-
-        return numero;
-
-    }
 }

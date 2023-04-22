@@ -11,7 +11,8 @@ import java.util.Scanner;
 
 public class CuentaService {
 
-    private Scanner objScanner = new Scanner(System.in);
+    private static Scanner objScanner = new Scanner(System.in)
+            
 
 
     public Cuenta crearCuenta(List<Sucursal> sucursales,Cliente cliente) {

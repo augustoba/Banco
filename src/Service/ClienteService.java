@@ -23,7 +23,7 @@ public class ClienteService {
     ClienteRepository objclienteRepository = clienteRepo;
     BancoRepository objbancoRep=bancoRepo;
 
-    private Scanner objScanner = new Scanner(System.in);
+    private static Scanner objScanner = new Scanner(System.in);
 
     public Cliente crearCliente(){
        CuentaService  objCuentaService = new CuentaService();
@@ -32,11 +32,11 @@ public class ClienteService {
         System.out.println("ingrese el nombre del cliente");
         objCliente.setNombre(objScanner.nextLine());
         System.out.println("ingrese el apellido");
+        System.out.println("ingrese el dni");
+        objCliente.setDni(objScanner.nextLine());
         objCliente.setApellido(objScanner.nextLine());
         System.out.println("ingrese la direccion");
         objCliente.setDireccion(objScanner.nextLine());
-        System.out.println("ingrese el dni");
-        objCliente.setDni(objScanner.nextLine());
         objCliente.setAlta(true);
         objCliente.setCuenta(objCuentaService.crearCuenta(bancoRepo.listaSucursales(),objCliente));
         clienteRepo.agregarCliente(objCliente);
