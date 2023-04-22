@@ -43,4 +43,26 @@ public class ClienteService {
 
         return objCliente;
     }
+
+
+    public void MostrarClienteCuenta(String num){
+        Boolean encontrado=false;
+        for (Cliente cliente: clienteRepo.mostrarClientes()){
+            if (cliente.getCuenta().getIdCuenta().equalsIgnoreCase(num)){
+                System.out.println(cliente);
+                encontrado=true;
+            }
+        }
+        if(!encontrado){
+            System.out.println("no se encontro el cliente");
+
+        }
+
+    }
+    public void MostrarTodosCliente(){
+        System.out.println(clienteRepo.mostrarClientes());
+
+    }
+
+
 }

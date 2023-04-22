@@ -34,7 +34,13 @@ public class SucursalService {
         System.out.println("ingrese el codigo postal");
         objSucursal.setCp(objRead.nextInt());
         objSucursal.setProvincia(objRead.nextLine());
+        bancoRepo.agregarSucursal(objSucursal);
         return objSucursal;
+    }
+
+    public void mostrarBancos(){
+        System.out.println(bancoRepo.listaSucursales());
+
     }
 
 }

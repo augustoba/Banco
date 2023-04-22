@@ -17,7 +17,6 @@ public class CuentaService {
     public Cuenta crearCuenta(List<Sucursal> sucursales,Cliente cliente) {
         Cuenta cuenta = new Cuenta();
 
-        System.out.println("elija una sucursal");
 
         for (int i = 0; i < sucursales.size(); i++) {
             System.out.println("sucursal : " + sucursales.get(i).getNumeroSuc()+
