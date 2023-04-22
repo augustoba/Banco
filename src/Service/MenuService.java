@@ -6,6 +6,7 @@ import Repositories.BancoRepository;
 import Repositories.ClienteRepository;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class MenuService {
 
     public void menu() {
 
-        int opc=0;
+        int opc = 0;
         System.out.println("-----MENU-----");
         System.out.println("1- Crear sucursal");
         System.out.println("2- Crear cliente");
@@ -37,29 +38,35 @@ public class MenuService {
 
         do {
 
-            opc = objScanner.nextInt();
-        switch (opc) {
 
-            case 1:
-                objSucursalService.crearSucursal();
-                break;
-            case 2:
-                objClienteService.crearCliente();
-                break;
-            case 3:
-                objTransferenciaService.transferir();
-                break;
-            case 4:
-                objSucursalService.mostrarBancos();
-                break;
-            case 5:
-                objScanner.nextLine();
-                System.out.println("ingrese el numero de cuenta");
-                objClienteService.MostrarClienteCuenta(objScanner.nextLine());
-                break;
-            case 6:
-                objClienteService.MostrarTodosCliente();
-                break;
+            opc = validarInput();
+
+            System.out.println("debe ingresar un numero entero");
+            objScanner.nextLine();
+
+
+            switch (opc) {
+
+                case 1:
+                    objSucursalService.crearSucursal();
+                    break;
+                case 2:
+                    objClienteService.crearCliente();
+                    break;
+                case 3:
+                    objTransferenciaService.transferir();
+                    break;
+                case 4:
+                    objSucursalService.mostrarBancos();
+                    break;
+                case 5:
+                    objScanner.nextLine();
+                    System.out.println("ingrese el numero de cuenta");
+                    objClienteService.MostrarClienteCuenta(objScanner.nextLine());
+                    break;
+                case 6:
+                    objClienteService.MostrarTodosCliente();
+                    break;
                 case 7:
                     System.out.println("-----MENU-----");
                     System.out.println("1- Crear sucursal");
@@ -71,13 +78,31 @@ public class MenuService {
                     System.out.println("7- Volver a mostrar el menu..");
                     System.out.println("8- Salir");
                     System.out.println("Ingrese una opcion");
-                     break;
-            case 8:
-                System.out.println("Cerrando programa.....");
-                break;
-            default:
-                System.out.println("ingrese una opcion correcta");
-        }
-        }while(opc!=8);
+                    break;
+                case 8:
+                    System.out.println("Cerrando programa.....");
+                    break;
+                default:
+                    System.out.println("ingrese una opcion correcta");
+            }
+        } while (opc != 8);
+    }
+
+    public int validarInput() {
+        int numero = 9;
+        boolean check = false;
+
+        do {
+            try {
+                numero = objScanner.nextInt();
+                check = true;
+            } catch (InputMismatchException e) {
+                System.out.println("debe ingresar un numero entero");
+                objScanner.nextLine();
+            }
+        } while (!check);
+
+        return numero;
+
     }
 }
