@@ -51,15 +51,12 @@ public class TransferenciaService {
                         clienteOrigen.getCuenta().getTransferencias().add(objTransferencia);
                         clienteDestino.getCuenta().getTransferencias().add(objTransferencia);
                         System.out.println("transferencia realizada con exito...");
-
                     } else {
                         System.out.println("no se puede transferir a la misma cuenta");
                     }
-
             } else {
                 System.out.println("su saldo no le permite realizar esta transferencia");
             }
-
         } else {
             System.out.println("no se encontraron la o las cuentas");
         }

@@ -4,6 +4,7 @@ package Service;
 import Entities.Cliente;
 import Exceptions.CantCarcException;
 import Exceptions.Excepciones;
+import Exceptions.StringNumerico;
 import Repositories.BancoRepository;
 import Repositories.ClienteRepository;
 
@@ -14,7 +15,8 @@ public class ClienteService {
 
     private ClienteRepository clienteRepo;
     private BancoRepository bancoRepo;
-    private Excepciones objExcepciones=new Excepciones();
+    private Excepciones objExcepciones = new Excepciones();
+
     public ClienteService() {
     }
 
@@ -24,43 +26,45 @@ public class ClienteService {
     }
 
     ClienteRepository objclienteRepository = clienteRepo;
-    BancoRepository objbancoRep=bancoRepo;
+    BancoRepository objbancoRep = bancoRepo;
 
     private static Scanner objScanner = new Scanner(System.in);
 
-    public Cliente crearCliente(){
-       CuentaService  objCuentaService = new CuentaService();
+    public Cliente crearCliente() {
+        CuentaService objCuentaService = new CuentaService();
 
         Cliente objCliente = new Cliente();
         try {
             objCliente.setNombre(objExcepciones.cantCaracteres("el nombre"));
             objCliente.setApellido(objExcepciones.cantCaracteres("el apellido"));
             objCliente.setDireccion(objExcepciones.cantCaracteres("la direccion"));
+            try {
+                objCliente.setDni(objExcepciones.valNumString());
+            } catch (StringNumerico e) {
+                System.out.println(e.getMessage());
+            }
         } catch (CantCarcException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
-
-        System.out.println("ingrese el dni");
-        objCliente.setDni(objScanner.nextLine());
-        objCliente.setAlta(true);
-        objCliente.setCuenta(objCuentaService.crearCuenta(bancoRepo.listaSucursales(),objCliente));
+         objCliente.setAlta(true);
+        objCliente.setCuenta(objCuentaService.crearCuenta(bancoRepo.listaSucursales(), objCliente));
         clienteRepo.agregarCliente(objCliente);
 
         return objCliente;
     }
 
 
-    public Cliente MostrarClienteCuenta(String num){
+    public Cliente MostrarClienteCuenta(String num) {
         Cliente cliente1 = new Cliente();
-        Boolean encontrado=false;
-        for (Cliente cliente: clienteRepo.mostrarClientes()){
-            if (cliente.getCuenta().getIdCuenta().equalsIgnoreCase(num)){
-                cliente1=cliente;
+        Boolean encontrado = false;
+        for (Cliente cliente : clienteRepo.mostrarClientes()) {
+            if (cliente.getCuenta().getIdCuenta().equalsIgnoreCase(num)) {
+                cliente1 = cliente;
 
-                encontrado=true;
+                encontrado = true;
             }
         }
-        if(!encontrado){
+        if (!encontrado) {
             System.out.println("no se encontro el cliente");
 
         }
@@ -68,10 +72,13 @@ public class ClienteService {
         return cliente1;
     }
 
-    public void MostrarTodosCliente(){
+    public void MostrarTodosCliente() {
         System.out.println(clienteRepo.mostrarClientes());
 
     }
 
+    public static boolean comprobarNumero(String str) {
+        return str.matches("\\d+");
+    }
 
 }

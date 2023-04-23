@@ -54,10 +54,10 @@ public class Excepciones {
 
     public String cantCaracteres(String tipoDato) throws CantCarcException {
 
-        String dato="";
+        String dato = "";
         do {
             System.out.println("ingrese " + tipoDato);
-            dato=objScanner.nextLine();
+            dato = objScanner.nextLine();
             try {
                 if (dato.length() < 4) {
                     throw new CantCarcException("error debe ingresar mas de 3 caracteres");
@@ -72,4 +72,34 @@ public class Excepciones {
         return dato;
     }
 
+    public String valNumString() throws StringNumerico,IllegalArgumentException {
+        boolean check = false;
+        String dni = "";
+        do {
+
+            try {
+                System.out.println("ingrese el dni");
+                dni= objScanner.nextLine();
+
+                if (!dni.matches("\\d+")) {
+                    throw new StringNumerico("ingrese solo numeros");
+                }
+                if (dni.length() < 8) {
+                    throw new IllegalArgumentException("debe ingresar un dni con 8 digitos minimo");
+                }
+                check = true;
+            } catch (StringNumerico e) {
+                System.out.println(e.getMessage());
+
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+
+
+        }
+
+        }while (!check);
+        return dni;
+    }
+
 }
+
