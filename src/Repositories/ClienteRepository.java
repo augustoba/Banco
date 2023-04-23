@@ -34,6 +34,21 @@ public class ClienteRepository extends ClienteDB {
         }
     }
 
+
+    @Override
+    public Cliente modificarCliente(List<Cliente> clienteList,String num) {
+        Cliente cliente1 = new Cliente();
+        for (int i = 0; i < clienteList.size(); i++) {
+            Cliente cliente = clienteList.get(i);
+            if (cliente.getCuenta().getIdCuenta() .equals(cliente.getCuenta().getIdCuenta())  ) {
+                clienteList.set(i, cliente);
+                cliente1=cliente;
+                break;
+            }
+        }
+        return cliente1;
+    }
+
     @Override
     public void eliminarCliente(Cliente cliente) {
        for (int i = 0; i < clienteList.size(); i++) {
@@ -44,4 +59,6 @@ public class ClienteRepository extends ClienteDB {
             }
         }
     }
+
+
 }

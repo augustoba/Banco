@@ -3,16 +3,14 @@ package Service;
 import Entities.Cliente;
 import Entities.Sucursal;
 import Entities.Cuenta;
-
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 public class CuentaService {
 
-    private static Scanner objScanner = new Scanner(System.in)
-            
+    private static Scanner objScanner = new Scanner(System.in);
+
 
 
     public Cuenta crearCuenta(List<Sucursal> sucursales,Cliente cliente) {
@@ -51,17 +49,19 @@ public class CuentaService {
             case 1:
                 cuenta.setCajaAhorro(true);
                 cuenta.setFechaAlta(LocalDate.now());
+                cuenta.setSaldo(100000.5);
                 flag=true;
                 break;
             case 2:
                 cuenta.setCuentaCorriente(true);
                 cuenta.setFechaAlta(LocalDate.now());
+                cuenta.setSaldo(100000.5);
                 flag=true;
                 break;
                 default:
                     System.out.println("ingrese una opcion correcta");
         }
-            cuenta.setSaldo(100000.5);
+
         }while (!flag);
         return cuenta;
     }

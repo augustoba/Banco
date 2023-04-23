@@ -3,6 +3,7 @@ package Service;
 
 import Entities.Sucursal;
 import Exceptions.Excepciones;
+import Exceptions.NumeroNegativoException;
 import Repositories.BancoRepository;
 
 import java.util.Scanner;
@@ -32,8 +33,8 @@ public class SucursalService {
         objSucursal.setDireccion(objRead.nextLine());
         System.out.println("ingrese la provincia");
         objSucursal.setProvincia(objRead.nextLine());
-        /*System.out.println("ingrese el codigo postal");
-        objSucursal.setCp(objExcepciones.validarInput());*/
+        System.out.println("ingrese el codigo postal");
+        objSucursal.setCp(objExcepciones.validarInput());
         System.out.println("ingrese el pais");
         Scanner objScanner = new Scanner(System.in);
         String pais=objScanner.nextLine();

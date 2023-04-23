@@ -3,6 +3,7 @@ package Service;
 import Entities.Cliente;
 import Entities.Sucursal;
 import Exceptions.Excepciones;
+import Exceptions.NumeroNegativoException;
 import Repositories.BancoRepository;
 import Repositories.ClienteRepository;
 
@@ -20,7 +21,7 @@ public class MenuService {
     SucursalService objSucursalService = new SucursalService(objBancoRepository);
     ClienteRepository objClienteRepository = new ClienteRepository(clienteList);
     ClienteService objClienteService = new ClienteService(objClienteRepository, objBancoRepository);
-    TransferenciaService objTransferenciaService = new TransferenciaService(objClienteRepository);
+    TransferenciaService objTransferenciaService = new TransferenciaService(objClienteRepository,objBancoRepository,objClienteService);
     Excepciones objExcepciones = new Excepciones();
 
     public void menu() {
@@ -39,7 +40,9 @@ public class MenuService {
 
         do {
             System.out.println("Ingrese una opcion");
-            opc = objExcepciones.validarInput();
+            System.out.println("7- Volver a mostrar el menu..");
+             opc = objExcepciones.validarInput();
+
 
 
             switch (opc) {
@@ -53,14 +56,19 @@ public class MenuService {
                     objClienteService.crearCliente();
                     break;
                 case 3:
-                    objTransferenciaService.transferir();
+                    try {
+                        objTransferenciaService.transferir();
+                    } catch (NumeroNegativoException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 4:
                     objSucursalService.mostrarBancos();
                     break;
                 case 5:
                     System.out.println("ingrese el numero de cuenta");
-                    objClienteService.MostrarClienteCuenta(objScanner.nextLine());
+                    System.out.println(objClienteService.MostrarClienteCuenta(objScanner.nextLine()));
+
                     break;
                 case 6:
                     objClienteService.MostrarTodosCliente();

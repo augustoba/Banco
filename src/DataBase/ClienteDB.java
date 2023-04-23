@@ -22,6 +22,8 @@ public abstract class ClienteDB {
 
     public abstract void modificarCliente(Cliente cliente);
 
+    public abstract Cliente modificarCliente(List<Cliente> clienteList,String num);
+
     public abstract void eliminarCliente(Cliente cliente);
 
 }
