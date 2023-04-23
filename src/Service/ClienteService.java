@@ -34,51 +34,57 @@ public class ClienteService {
         CuentaService objCuentaService = new CuentaService();
 
         Cliente objCliente = new Cliente();
+
         try {
-            objCliente.setNombre(objExcepciones.cantCaracteres("el nombre"));
-            objCliente.setApellido(objExcepciones.cantCaracteres("el apellido"));
-            objCliente.setDireccion(objExcepciones.cantCaracteres("la direccion"));
-            try {
-                objCliente.setDni(objExcepciones.valNumString());
-            } catch (StringNumerico e) {
-                System.out.println(e.getMessage());
-            }
-        } catch (CantCarcException e) {
+
+            objCliente.setNombre(objExcepciones.valLetrasString("el nombre"));
+            objCliente.setApellido(objExcepciones.valLetrasString("el apellido"));
+            objCliente.setDireccion(objExcepciones.valLetrasString("la direccion"));
+        } catch (StringNumerico e) {
             System.out.println(e.getMessage());
         }
-         objCliente.setAlta(true);
+
+        try {
+            objCliente.setDni(objExcepciones.valNumString("el DNI"));
+        } catch (StringNumerico e) {
+            e.printStackTrace();
+        }
+        objCliente.setAlta(true);
         objCliente.setCuenta(objCuentaService.crearCuenta(bancoRepo.listaSucursales(), objCliente));
         clienteRepo.agregarCliente(objCliente);
+
 
         return objCliente;
     }
 
 
     public Cliente MostrarClienteCuenta(String num) {
-        Cliente cliente1 = new Cliente();
-        Boolean encontrado = false;
+
+
         for (Cliente cliente : clienteRepo.mostrarClientes()) {
             if (cliente.getCuenta().getIdCuenta().equalsIgnoreCase(num)) {
-                cliente1 = cliente;
 
-                encontrado = true;
+
+
+                return cliente;
             }
         }
-        if (!encontrado) {
-            System.out.println("no se encontro el cliente");
 
-        }
-
-        return cliente1;
+        System.out.println("no se encontro el cliente");
+        return null;
     }
 
     public void MostrarTodosCliente() {
+
+        if (clienteRepo.mostrarClientes().size()>0){
         System.out.println(clienteRepo.mostrarClientes());
 
+    }else{
+            System.out.println("no hay clientes cargados");
+
+        }
+
+
     }
 
-    public static boolean comprobarNumero(String str) {
-        return str.matches("\\d+");
     }
-
-}

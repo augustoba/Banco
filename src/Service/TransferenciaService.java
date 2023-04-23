@@ -4,6 +4,7 @@ import Entities.Cliente;
 import Entities.Transferencia;
 import Exceptions.Excepciones;
 import Exceptions.NumeroNegativoException;
+import Exceptions.StringNumerico;
 import Repositories.BancoRepository;
 import Repositories.ClienteRepository;
 
@@ -29,16 +30,25 @@ public class TransferenciaService {
 
     public void transferir() throws NumeroNegativoException {
 
-        System.out.println("ingrese su numero de cuenta");
-        String cuentaNum1 = objRead.nextLine();
-
+        String cuentaNum1 = null;
+        String cuentaNum2 = null;
+        try {
+            cuentaNum1 = objExcepciones.valNumString("el n° de su cuenta");
+        } catch (StringNumerico e) {
+            e.printStackTrace();
+        }
         Cliente clienteOrigen = clienteService.MostrarClienteCuenta(cuentaNum1);
-        System.out.println("ingrese la cuenta de destino");
-        String cuentaNum2 = objRead.nextLine();
-        Cliente clienteDestino = clienteService.MostrarClienteCuenta(cuentaNum2);
+        if (clienteOrigen!=null) {
 
-        if (clienteOrigen != null && clienteDestino != null) {
 
+            try {
+                cuentaNum2 = objExcepciones.valNumString("el n° de cuenta de destino");
+            } catch (StringNumerico e) {
+                e.printStackTrace();
+            }
+            Cliente clienteDestino = clienteService.MostrarClienteCuenta(cuentaNum2);
+
+         if (clienteOrigen != null && clienteDestino != null) {
             System.out.println("ingrese el monto a transferir");
             Double monto= objExcepciones.validarDouble();
            if (clienteOrigen.getCuenta().getSaldo() >= monto) {
@@ -51,14 +61,15 @@ public class TransferenciaService {
                         clienteOrigen.getCuenta().getTransferencias().add(objTransferencia);
                         clienteDestino.getCuenta().getTransferencias().add(objTransferencia);
                         System.out.println("transferencia realizada con exito...");
+
                     } else {
                         System.out.println("no se puede transferir a la misma cuenta");
                     }
             } else {
                 System.out.println("su saldo no le permite realizar esta transferencia");
             }
-        } else {
-            System.out.println("no se encontraron la o las cuentas");
+
+        }
         }
     }
 

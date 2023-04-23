@@ -27,23 +27,13 @@ public class MenuService {
     public void menu() {
 
         int opc = 0;
-        System.out.println("-----MENU-----");
-        System.out.println("1- Crear sucursal");
-        System.out.println("2- Crear cliente");
-        System.out.println("3- Transferir");
-        System.out.println("4- Mostrar lista de bancos");
-        System.out.println("5- Buscar cliente por numero de cuenta");
-        System.out.println("6- Mostrar todos los clientes");
-        System.out.println("7- Volver a mostrar el menu..");
-        System.out.println("8- Salir");
+        opcMenu();
 
 
         do {
-            System.out.println("Ingrese una opcion");
-            System.out.println("7- Volver a mostrar el menu..");
+            System.out.println("Ingrese una opcion, ingrese 7 para volver a ver el menu.");
+
              opc = objExcepciones.validarInput();
-
-
 
             switch (opc) {
 
@@ -66,7 +56,7 @@ public class MenuService {
                     objSucursalService.mostrarBancos();
                     break;
                 case 5:
-                    System.out.println("ingrese el numero de cuenta");
+                    System.out.println("Ingrese el numero de cuenta.");
                     System.out.println(objClienteService.MostrarClienteCuenta(objScanner.nextLine()));
 
                     break;
@@ -74,25 +64,28 @@ public class MenuService {
                     objClienteService.MostrarTodosCliente();
                     break;
                 case 7:
-                    System.out.println("-----MENU-----");
-                    System.out.println("1- Crear sucursal");
-                    System.out.println("2- Crear cliente");
-                    System.out.println("3- Transferir");
-                    System.out.println("4- Mostrar lista de bancos");
-                    System.out.println("5- Buscar cliente por numero de cuenta");
-                    System.out.println("6- Mostrar todos los clientes");
-                    System.out.println("7- Volver a mostrar el menu..");
-                    System.out.println("8- Salir");
-                    System.out.println("Ingrese una opcion");
+                    opcMenu();
                     break;
                 case 8:
                     System.out.println("Cerrando programa.....");
                     break;
                 default:
-                    System.out.println("ingrese una opcion correcta");
+                    System.out.println("Ingrese una opcion correcta.");
             }
         } while (opc != 8);
     }
 
+    public void opcMenu(){
+        System.out.println("-----MENU-----");
+        System.out.println("1- Crear sucursal.");
+        System.out.println("2- Crear cliente.");
+        System.out.println("3- Transferir.");
+        System.out.println("4- Mostrar lista de bancos.");
+        System.out.println("5- Buscar cliente por numero de cuenta.");
+        System.out.println("6- Mostrar todos los clientes.");
+        System.out.println("7- Volver a mostrar el menu..");
+        System.out.println("8- Salir.");
+
+    }
 
 }

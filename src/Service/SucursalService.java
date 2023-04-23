@@ -29,13 +29,13 @@ public class SucursalService {
 
         Sucursal objSucursal = new Sucursal();
 
-        System.out.println("ingrese la direccion de la sucursal");
+        System.out.println("Ingrese la direccion de la sucursal.");
         objSucursal.setDireccion(objRead.nextLine());
-        System.out.println("ingrese la provincia");
+        System.out.println("Ingrese la provincia.");
         objSucursal.setProvincia(objRead.nextLine());
-        System.out.println("ingrese el codigo postal");
+        System.out.println("Ingrese el codigo postal.");
         objSucursal.setCp(objExcepciones.validarInput());
-        System.out.println("ingrese el pais");
+        System.out.println("Ingrese el pais.");
         Scanner objScanner = new Scanner(System.in);
         String pais=objScanner.nextLine();
         objSucursal.setPais(pais);
@@ -45,8 +45,12 @@ public class SucursalService {
     }
 
     public void mostrarBancos() {
+        if (bancoRepo.listaSucursales().size() > 0) {
         System.out.println(bancoRepo.listaSucursales());
 
+    }else{
+            System.out.println("No hay sucursales cargadas");
     }
 
+}
 }

@@ -3,6 +3,8 @@ package Service;
 import Entities.Cliente;
 import Entities.Sucursal;
 import Entities.Cuenta;
+import Exceptions.Excepciones;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -10,6 +12,7 @@ import java.util.Scanner;
 public class CuentaService {
 
     private static Scanner objScanner = new Scanner(System.in);
+    private Excepciones objExcepciones = new Excepciones();
 
 
 
@@ -26,8 +29,8 @@ public class CuentaService {
         Boolean check=false;
         int suc;
         do {
-            System.out.println("elija una sucursal");
-             suc = objScanner.nextInt();
+            System.out.println("Elija una sucursal.");
+             suc = objExcepciones.validarInput();
             if (suc > sucursales.size()) {
                 System.out.println("la sucursal no existe.");
 
@@ -38,13 +41,13 @@ public class CuentaService {
             }
         }while (!check);
 
-        System.out.println("que tipo de cuenta quiere crear");
+        System.out.println("Que tipo de cuenta quiere crear.");
 
         Boolean flag=false;
         do {
+            System.out.println("Ingrese 1 para cuenta corriente, 2 para caja de ahorros.");
+            int opc = objExcepciones.validarInput();
 
-            System.out.println("ingrese 1 para cuenta corriente, 2 para caja de ahorros.");
-            int opc = objScanner.nextInt();
         switch (opc) {
             case 1:
                 cuenta.setCajaAhorro(true);
@@ -59,7 +62,7 @@ public class CuentaService {
                 flag=true;
                 break;
                 default:
-                    System.out.println("ingrese una opcion correcta");
+                    System.out.println("Ingrese una opcion correcta.");
         }
 
         }while (!flag);

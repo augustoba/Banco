@@ -72,33 +72,54 @@ public class Excepciones {
         return dato;
     }
 
-    public String valNumString() throws StringNumerico,IllegalArgumentException {
+    public String valNumString(String tipoDato) throws StringNumerico,IllegalArgumentException {
         boolean check = false;
         String dni = "";
         do {
 
             try {
-                System.out.println("ingrese el dni");
+                System.out.println("ingrese " + tipoDato);
                 dni= objScanner.nextLine();
 
                 if (!dni.matches("\\d+")) {
                     throw new StringNumerico("ingrese solo numeros");
                 }
                 if (dni.length() < 8) {
-                    throw new IllegalArgumentException("debe ingresar un dni con 8 digitos minimo");
+                    throw new IllegalArgumentException("debe minimo 8 digitos ");
                 }
                 check = true;
-            } catch (StringNumerico e) {
+            } catch (StringNumerico | IllegalArgumentException e) {
                 System.out.println(e.getMessage());
 
-            } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
-
-
-        }
+            }
 
         }while (!check);
         return dni;
+    }
+
+    public String valLetrasString(String tipoDato) throws StringNumerico,IllegalArgumentException {
+        boolean check = false;
+        String dato = "";
+        do {
+
+            try {
+                System.out.println("ingrese " + tipoDato);
+                dato= objScanner.nextLine();
+
+                if (dato.matches("\\d+")) {
+                    throw new StringNumerico("ingrese solo letras");
+                }
+                if (dato.length() < 3) {
+                    throw new IllegalArgumentException("debe ingresar 3 caracteres minimo");
+                }
+                check = true;
+            } catch (StringNumerico | IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+
+            }
+
+        }while (!check);
+        return dato;
     }
 
 }
