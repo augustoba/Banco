@@ -2,6 +2,7 @@ package Service;
 
 
 import Entities.Sucursal;
+import Exceptions.CantCarcException;
 import Exceptions.Excepciones;
 import Exceptions.NumeroNegativoException;
 import Repositories.BancoRepository;
@@ -12,6 +13,7 @@ public class SucursalService {
 
     private BancoRepository bancoRepo;
     Excepciones objExcepciones = new Excepciones();
+    BancoRepository objBancoRepository = bancoRepo;
 
     public SucursalService() {
     }
@@ -23,23 +25,22 @@ public class SucursalService {
 
     private static final Scanner objRead = new Scanner(System.in);
 
-    BancoRepository objBancoRepository = bancoRepo;
+
 
     public Sucursal crearSucursal() {
 
         Sucursal objSucursal = new Sucursal();
 
-        System.out.println("Ingrese la direccion de la sucursal.");
-        objSucursal.setDireccion(objRead.nextLine());
-        System.out.println("Ingrese la provincia.");
-        objSucursal.setProvincia(objRead.nextLine());
+      //  System.out.println("Ingrese la direccion de la sucursal.");
+        try {
+            objSucursal.setDireccion(objExcepciones.cantCaracteres("la direccion de la sucursal"));
+            objSucursal.setProvincia(objExcepciones.cantCaracteres("la provincia"));
+            objSucursal.setPais(objExcepciones.cantCaracteres("el pais"));
+        } catch (CantCarcException e) {
+            e.printStackTrace();
+        }
         System.out.println("Ingrese el codigo postal.");
         objSucursal.setCp(objExcepciones.validarInput());
-        System.out.println("Ingrese el pais.");
-        Scanner objScanner = new Scanner(System.in);
-        String pais=objScanner.nextLine();
-        objSucursal.setPais(pais);
-
         bancoRepo.agregarSucursal(objSucursal);
         return objSucursal;
     }

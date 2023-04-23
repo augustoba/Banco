@@ -28,7 +28,6 @@ public class ClienteService {
     ClienteRepository objclienteRepository = clienteRepo;
     BancoRepository objbancoRep = bancoRepo;
 
-    private static Scanner objScanner = new Scanner(System.in);
 
     public Cliente crearCliente() {
         CuentaService objCuentaService = new CuentaService();
@@ -52,6 +51,7 @@ public class ClienteService {
         objCliente.setAlta(true);
         objCliente.setCuenta(objCuentaService.crearCuenta(bancoRepo.listaSucursales(), objCliente));
         clienteRepo.agregarCliente(objCliente);
+
 
 
         return objCliente;

@@ -64,8 +64,8 @@ public class Excepciones {
                 }
             } catch (CantCarcException e) {
                 System.out.println(e.toString());
-                System.out.println("ingrese de nuevo");
-                objScanner.nextLine();
+               /* System.out.println("ingrese de nuevo");
+                objScanner.nextLine();*/
             }
         } while (dato.length() < 3);
 
