@@ -17,7 +17,7 @@ public class Excepciones {
                 objScanner.nextLine();
                 check = true;
             } catch (InputMismatchException e) {
-                System.out.println(e.toString());
+               // System.out.println(e.getMessage());
                 System.out.println("debe ingresar un numero entero");
                 objScanner.nextLine();
             }
@@ -64,8 +64,8 @@ public class Excepciones {
                 }
             } catch (CantCarcException e) {
                 System.out.println(e.toString());
-               /* System.out.println("ingrese de nuevo");
-                objScanner.nextLine();*/
+               // System.out.println("ingrese de nuevo");
+                //objScanner.nextLine();
             }
         } while (dato.length() < 3);
 

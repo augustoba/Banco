@@ -38,7 +38,7 @@ public class TransferenciaService {
             e.printStackTrace();
         }
         Cliente clienteOrigen = clienteService.MostrarClienteCuenta(cuentaNum1);
-        if (clienteOrigen!=null) {
+        if (clienteOrigen != null) {
 
 
             try {
@@ -48,13 +48,14 @@ public class TransferenciaService {
             }
             Cliente clienteDestino = clienteService.MostrarClienteCuenta(cuentaNum2);
 
-         if (clienteOrigen != null && clienteDestino != null) {
-            System.out.println("ingrese el monto a transferir");
-            Double monto= objExcepciones.validarDouble();
-           if (clienteOrigen.getCuenta().getSaldo() >= monto) {
-                if (clienteOrigen != clienteDestino) {
-                        clienteOrigen.getCuenta().setSaldo(clienteOrigen.getCuenta().getSaldo()-monto);
-                        clienteDestino.getCuenta().setSaldo(clienteOrigen.getCuenta().getSaldo()+monto);
+            if (clienteOrigen != null && clienteDestino != null) {
+                System.out.println("ingrese el monto a transferir");
+                Double monto = objExcepciones.validarDouble();
+                if (clienteOrigen.getCuenta().getSaldo() >= monto) {
+                    if (clienteOrigen != clienteDestino) {
+
+                        clienteOrigen.getCuenta().setSaldo((clienteOrigen.getCuenta().getSaldo() - monto));
+                        clienteDestino.getCuenta().setSaldo((clienteDestino.getCuenta().getSaldo() + monto));
                         Transferencia objTransferencia = new Transferencia();
                         objTransferencia.setMonto(monto);
                         objTransferencia.setDetalle(detalleTransfEnv(monto, objTransferencia, clienteOrigen, clienteDestino));
@@ -65,11 +66,11 @@ public class TransferenciaService {
                     } else {
                         System.out.println("no se puede transferir a la misma cuenta");
                     }
-            } else {
-                System.out.println("su saldo no le permite realizar esta transferencia");
-            }
+                } else {
+                    System.out.println("su saldo no le permite realizar esta transferencia");
+                }
 
-        }
+            }
         }
     }
 

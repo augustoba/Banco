@@ -33,27 +33,19 @@ public class ClienteService {
         CuentaService objCuentaService = new CuentaService();
 
         Cliente objCliente = new Cliente();
-
         try {
 
+            objCliente.setDni(objExcepciones.valNumString("el DNI"));
             objCliente.setNombre(objExcepciones.valLetrasString("el nombre"));
             objCliente.setApellido(objExcepciones.valLetrasString("el apellido"));
             objCliente.setDireccion(objExcepciones.valLetrasString("la direccion"));
+            objCliente.setAlta(true);
+            objCliente.setCuenta(objCuentaService.crearCuenta(bancoRepo.listaSucursales(), objCliente));
+            clienteRepo.agregarCliente(objCliente);
+
         } catch (StringNumerico e) {
             System.out.println(e.getMessage());
         }
-
-        try {
-            objCliente.setDni(objExcepciones.valNumString("el DNI"));
-        } catch (StringNumerico e) {
-            e.printStackTrace();
-        }
-        objCliente.setAlta(true);
-        objCliente.setCuenta(objCuentaService.crearCuenta(bancoRepo.listaSucursales(), objCliente));
-        clienteRepo.agregarCliente(objCliente);
-
-
-
         return objCliente;
     }
 
@@ -63,9 +55,6 @@ public class ClienteService {
 
         for (Cliente cliente : clienteRepo.mostrarClientes()) {
             if (cliente.getCuenta().getIdCuenta().equalsIgnoreCase(num)) {
-
-
-
                 return cliente;
             }
         }
@@ -76,10 +65,10 @@ public class ClienteService {
 
     public void MostrarTodosCliente() {
 
-        if (clienteRepo.mostrarClientes().size()>0){
-        System.out.println(clienteRepo.mostrarClientes());
+        if (clienteRepo.mostrarClientes().size() > 0) {
+            System.out.println(clienteRepo.mostrarClientes());
 
-    }else{
+        } else {
             System.out.println("no hay clientes cargados");
 
         }
@@ -87,4 +76,4 @@ public class ClienteService {
 
     }
 
-    }
+}
