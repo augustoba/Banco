@@ -16,7 +16,6 @@ public class MenuService {
     private static Scanner objScanner = new Scanner(System.in);
     List<Sucursal> BancoList = new ArrayList<>();
     List<Cliente> clienteList = new ArrayList<>();
-
     BancoRepository objBancoRepository = new BancoRepository(BancoList);
     SucursalService objSucursalService = new SucursalService(objBancoRepository);
     ClienteRepository objClienteRepository = new ClienteRepository(clienteList);
